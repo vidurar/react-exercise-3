@@ -1,20 +1,34 @@
 import React from "react";
 import { connect } from "react-redux";
+import { addBill, removeBill } from "./redux/actions";
 import Tabs from "./components/tabs";
+import Bill from "./components/bill";
 
 const App = props => {
   return (
     <div>
-      <h1>Tabs Demo</h1>
+      <h1>Cleo</h1>
       <Tabs>
         <div label="Bills">
           {props.bills.map(bill => (
-            <div>{bill.name}</div>
+            <Bill
+              name={bill.name}
+              transactions={bill.transactions}
+              isBill={bill.isBill}
+              key={bill.id}
+              onButtonClick={() => props.removeBill(bill.id)}
+            />
           ))}
         </div>
         <div label="Potential Bills">
           {props.potentialBills.map(bill => (
-            <div>{bill.name}</div>
+            <Bill
+              name={bill.name}
+              transactions={bill.transactions}
+              isBill={bill.isBill}
+              key={bill.id}
+              onButtonClick={() => props.addBill(bill.id)}
+            />
           ))}
         </div>
       </Tabs>
@@ -24,4 +38,11 @@ const App = props => {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    addBill: billId => dispatch(addBill(billId, true)),
+    removeBill: billId => dispatch(removeBill(billId, false))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

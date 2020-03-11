@@ -5,19 +5,22 @@ import {
   RENDER_BILL_LIST
 } from "./constants";
 
-export function removeBill(billId) {
+export function removeBill(billId, isBill) {
   return {
     type: REMOVE_BILL,
-    billId
+    billId,
+    isBill
   };
 }
 
-export function addBill(billId) {
+export function addBill(billId, isBill) {
   return {
     type: ADD_BILL,
-    billId
+    billId,
+    isBill
   };
 }
+
 export function loadBillList(isLoading) {
   return {
     type: LOAD_BILL_LIST,

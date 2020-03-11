@@ -29,7 +29,6 @@ export default function billList(state = initialState, action) {
         isLoading: true
       };
     case RENDER_BILL_LIST:
-      console.log("ACTION", action);
       return {
         ...state,
         bills: action.bills,
