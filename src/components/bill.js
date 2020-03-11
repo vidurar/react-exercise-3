@@ -27,7 +27,7 @@ const Bill = props => {
         <div>{props.name}</div>
         {transactionsVisible ? (
           props.transactions.map((transaction, index) => (
-            <TransactionInformation>{`${index + 1}. Amount: ${
+            <TransactionInformation key={index}>{`${index + 1}. Amount: ${
               transaction.amount
             } | Date: ${transaction.date}`}</TransactionInformation>
           ))
